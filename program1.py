@@ -11,11 +11,10 @@ tekst=(input('Podaj Tekst: ').lower().replace(" ",""))
 tekst=sub("[^a-z łęóąśżźćń]", "", tekst)
 print (tekst[::-1])
 
-if tekst==tekst[::-1]: 
+if tekst==tekst[::-1] and len(tekst) > 3: 
     print('To wyrażenie jest palindromem')
     sleep(2)
     website = "https://poocoo.pl/scrabble-slowa-z-liter/" + tekst
     webbrowser.open(website)
 else:
     print('To wyrażenie nie jest palindromem')
-
