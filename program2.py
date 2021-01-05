@@ -13,7 +13,7 @@ import requests
 from datetime import datetime
 from pytz import timezone
 from  random import choice
-from requests import get
+from requests import get, request
 import json
 from bs4 import BeautifulSoup
  
@@ -26,7 +26,7 @@ headers = {
     'x-rapidapi-host': "community-open-weather-map.p.rapidapi.com"
     }
 
-response = requests.request("GET", url, headers=headers, params=querystring).json()
+response = request("GET", url, headers=headers, params=querystring).json()
  
 if response['name'] == 'Warszawa':
     print("Pogoda: {}".format(response["weather"][0]['description']))
@@ -36,12 +36,12 @@ if response['name'] == 'Warszawa':
     print("Wiatr: {} km/h".format(response["wind"]["speed"]))
 
     
-time_global = '%Y-%m-%d %H:%M:%S'
+time_global = '%d-%m-%Y %H:%M:%S'
 print("\nPekin: {}".format(datetime.now(timezone("Asia/Shanghai")).strftime(time_global)))
 print("Sydney: {}".format(datetime.now(timezone("Australia/Sydney")).strftime(time_global)))
 print("London: {}".format(datetime.now(timezone("Europe/London")).strftime(time_global)))
  
-response = requests.request("GET", "https://imienniczek.pl/widget/js")
+response = request("GET", "https://imienniczek.pl/widget/js")
 soup = BeautifulSoup(response.text, "html.parser")
 print("")
 for name_day in soup.find_all("a"):
