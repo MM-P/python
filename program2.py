@@ -16,9 +16,10 @@ from  random import choice
 from requests import get, request
 import json
 from bs4 import BeautifulSoup
- 
-url = "https://community-open-weather-map.p.rapidapi.com/weather"
 
+print('Pogoda dla Warszawy\n\n')
+
+url = "https://community-open-weather-map.p.rapidapi.com/weather"
 querystring = {"q":"Warsaw,PL","lat":"0","lon":"0","id":"2172797","lang":"pl","units":"metric","mode":"xml, html"}
 
 headers = {
@@ -27,14 +28,13 @@ headers = {
     }
 
 response = request("GET", url, headers=headers, params=querystring).json()
- 
+
 if response['name'] == 'Warszawa':
     print("Pogoda: {}".format(response["weather"][0]['description']))
     print("Temperatura: {:.2f} C".format(response["main"]["temp"]))
     print("Ciśnienie: {} hPa".format(response["main"]["pressure"]))
     print("Wilgotność: {} %".format(response["main"]["humidity"]))
     print("Wiatr: {} km/h".format(response["wind"]["speed"]))
-
     
 time_global = '%d-%m-%Y %H:%M:%S'
 print("\nPekin: {}".format(datetime.now(timezone("Asia/Shanghai")).strftime(time_global)))
@@ -53,3 +53,4 @@ if cytat.status_code == 200:
     print(f'\n\"Cytat na dzis: {random_quote["text"]}\"\nAutor: {random_quote["author"]}')
 else:
     print('bład pobierania cytatu')
+   
