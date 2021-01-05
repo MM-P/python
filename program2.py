@@ -43,7 +43,7 @@ print("London: {}".format(datetime.now(timezone("Europe/London")).strftime(time_
 response = request("GET", "https://imienniczek.pl/widget/js")
 soup = BeautifulSoup(response.text, "html.parser")
 print("")
-for name_day in soup.find_all("a"):
+for name_day in soup.find_all("span"):
     print(name_day.text)
     
 cytat = get('https://type.fit/api/quotes')
