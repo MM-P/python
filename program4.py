@@ -58,7 +58,7 @@ for i in range(5):
     directors = movie['directors']
     casting = movie['cast']
     
-    print('Informacja o filmie:')
+    print('\nInformacja o filmie:')
     print(f'{title} - {year}')
     print(f'Ranking: {rating}')
     print("")
